@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.test_kafka.consumer.KafkaMessageConsumer;
 import com.example.test_kafka.publisher.KafkaMessagePublisher;
 
 @SpringBootApplication
@@ -18,10 +19,15 @@ public class TestKafkaApplication implements CommandLineRunner {
 	@Autowired
 	KafkaMessagePublisher kafkaMessagePublisher;
 	
+	@Autowired
+	KafkaMessageConsumer kafkaMessageConsumer;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
 		kafkaMessagePublisher.sendMessage("mon message");
+		String message = "";
+		kafkaMessageConsumer.listenGroupFoo(message);
 	}
 
 }
